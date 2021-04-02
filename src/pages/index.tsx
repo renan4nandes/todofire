@@ -1,9 +1,13 @@
+import axios from 'axios'
+
 import { Button } from "../components/Button";
 
-import { signIn, signOut, useSession } from "next-auth/client"
+import { signIn, signOut, useSession, getSession } from "next-auth/client"
 
-export default function Home(){
+export default function Home({ todos }){
     const [session] = useSession()
+
+    console.log(todos)
 
     return(
         <div className="h-screen bg-white dark:bg-gray-900">
@@ -17,12 +21,18 @@ export default function Home(){
             <main className="p-4">
                 {
                     session ? (
-                        <li className="dark:text-white">Logged in as {session.user.name}</li>
+                        <>
+                            <Button title="Create todo" />
+                            {
+                                todos.map(todo => {
+                                    <li className="dark:text-white">{todo.name}</li>
+                                })
+                            }
+                        </>
                     ) : (
                         <li className="dark:text-white">Login to see your todos</li>
                     )
                 }
-                
                 
                 {
                     session && (
