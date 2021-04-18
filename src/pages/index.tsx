@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 
 import { Button } from "../components/Button";
-import { signIn, signOut, useSession, getSession } from "next-auth/client"
+import { signIn, signOut, useSession } from "next-auth/client"
 import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
@@ -13,13 +13,11 @@ function Home(){
     async function createTodo(){
         const todoName = prompt('What is the todo name?')
         
+        if(!todoName) return
+
         await axios.post(`/api/todos/post/${session.user.email}/${todoName}`)
 
         window.location.reload()
-    }
-
-    async function deleteTodo(id){
-        await axios.post(`/api/todos/delete/${id}`)
     }
 
     function LoadTodos() {
@@ -36,7 +34,10 @@ function Home(){
                     <li id="todo" className="mt-6 mr-4 dark:text-white">
                         {todo.name}
                     </li>
-                    <Button title="Delete" onClick={() => deleteTodo(todo._id)} />
+                    <Button title="Delete" onClick={async () => {
+                        await axios.post(`/api/todos/delete/${todo._id}`)
+                        window.location.reload()
+                    }} />
                  </div>
                ))
             )
@@ -52,7 +53,7 @@ function Home(){
     }
 
     return(
-        <div className="h-screen bg-white dark:bg-gray-900">
+        <div className="h-screen bg-white dark:bg-darkgray">
             <header className="flex p-4 items-center justify-between">
                 <h1 className="font-montserrat text-2xl dark:text-white">Todo<strong className="text-orange">Fire</strong></h1>
                 {

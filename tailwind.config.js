@@ -8,7 +8,8 @@ module.exports = {
       },
     
       colors: {
-        orange: '#FC9403'
+        'orange': '#FC9403',
+        'darkgray': '#242424'
       }
     }
   },
