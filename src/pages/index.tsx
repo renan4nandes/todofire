@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import Head from 'next/head'
 import axios from 'axios'
 
 import { Button } from "../components/Button";
-import { signIn, signOut, useSession } from "next-auth/client"
+import { signIn, signOut, useSession, getSession } from "next-auth/client"
 import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
@@ -54,6 +54,10 @@ function Home(){
 
     return(
         <div className="h-screen bg-white dark:bg-darkgray">
+            <Head>
+                <title>TodoFire - Your Todos</title>
+            </Head>
+
             <header className="flex p-4 items-center justify-between">
                 <h1 className="font-montserrat text-2xl dark:text-white">Todo<strong className="text-orange">Fire</strong></h1>
                 {

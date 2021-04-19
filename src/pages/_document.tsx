@@ -10,7 +10,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>TodoFire</title>
           <link rel="shortcut icon" href="favicon.png"/>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet" />
