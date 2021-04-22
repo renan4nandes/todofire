@@ -9,9 +9,11 @@ Is easy! Just login with your Google account and start creating and deleting you
 
 ## Creating todos
 Just click the "Create todo" button when logged in and type your todo name, and voilà, your todo has been created successfully! :)
+<img src="img/create-example.gif">
 
 ## Deleting todos
 If you already have a todo, click the "Delete" button on the todo, and the todo is going to be deleted from the database
+<img src="img/delete-example.gif">
 
 ## Link to the site
 [Click me!](https://todofire.vercel.app)
